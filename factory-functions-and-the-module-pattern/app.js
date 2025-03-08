@@ -47,13 +47,39 @@ console.log(addFive(10)); // Outputs: 15
 // A factory function is a function that returns a new object.
 // It's like a constructor function, but without the "new" keyword.
 
-const User = function(name){
-    this.name = name;
-    this.discordName = "@" + name;
-}
-// this is a constructor - then this can be refactored into a fctory
+// const User = function(name){
+//     this.name = name;
+//     this.discordName = "@" + name;
+// }
+// // this is a constructor - then this can be refactored into a fctory
 
-function createUser(name){
-    const discordName = "@" + name;
-    return {name, discordName};
-}
+// function createUser(name){
+//     const discordName = "@" + name;
+//     return {name, discordName};
+// }
+
+// const user = createUser('Loko');
+// console.log(user);
+
+// shortcut to create an object
+const name = 'Loko';
+const age = 30;
+const color = 'blue';
+
+const userObject = {name, age, color};
+
+console.log(userObject);
+console.log( 'This is my name: '+ userObject.name);
+
+// destructuring
+
+let a, b ,rest;
+
+[a, b] = [1, 2];
+
+console.log(a); // 1
+console.log(b); // 2
+
+[a, b, ...rest] = [1, 2, 3, 4, 5];
+
+console.log(rest);
