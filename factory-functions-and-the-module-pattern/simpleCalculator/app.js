@@ -8,7 +8,9 @@ const divide = document.querySelector('.divide');
 const output = document.querySelector('.output');
 
 //calculator function
-
+// IIFE - Immediately Invoked Function Expression
+// syntax => (function () { ... })();
+// Note: Sans le (), la variable calculator contiendrait la fonction elle-même, et non l'objet retourné :
 const calculator = (function (){
     const add = (num1, num2) => num1 + num2;
     const subtract = (num1, num2) => num1 - num2;
