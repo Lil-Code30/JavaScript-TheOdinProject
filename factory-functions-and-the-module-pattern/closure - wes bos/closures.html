@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    <h1>Closures in JS </h1>
+    <script>
+
+        // A closure is the ability to access a parent level scope from a child scope, even after the parent function has been terminated.
+        /*
+        function outer(){
+            const outerVar = "Hey I am an Outer var";
+
+            function inner(){
+                const innerVar = "Hey I am an inner var";
+                console.log(innerVar);
+                console.log(outerVar);
+            }
+            //inner();
+            return inner;
+        }
+
+        //outer();
+        const innerFn = outer();
+
+        innerFn();
+        */
+
+        /*Since our inner scope references a variable that was created in our outer scope, that is what is referred to as closure.*/
+        function createGreeting(greeting = ""){
+            const myGreet = greeting.toUpperCase();
+
+            return function(name){
+                return `${myGreet}, ${name}!`;
+            }
+        }
+
+        const sayHelo = createGreeting("Hello");
+        console.log(sayHelo("Loko"));
+
+        // Private Variables
+
+        function createGame(gameName){
+            let score = 0;
+
+            return function win(){
+                score++;
+
+                return `${gameName} score is now ${score}`;
+            }
+        }
+
+        const hockeyGame = createGame("Hockey");
+        const soccerGame = createGame("Soccer");
+        console.log(soccerGame());
+        console.log(soccerGame());
+        console.log(hockeyGame());
+
+        /*
+        Closures are the ability of a child function, or an inner function, to access variables from a higher level scope even after the functions have been called or closed or closed over.
+        */
+    </script>
+</body>
+</html>
