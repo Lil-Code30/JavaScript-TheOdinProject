@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module pattern in JavaScript</title>
+</head>
+<body>
+    
+    <script>
+        // Module pattern
+
+        const formmater = ( function(){
+
+            console.log('Loading formmater...');
+            const logger = (message) => console.log(`[${Date.now()}] logger: ${message}`);
+
+            const makeUppercase = (text) => {
+                logger('Making uppercase...');
+                return text.toUpperCase();
+            };
+
+            return {makeUppercase,}
+        })();
+
+       
+        
+        formmater.makeUppercase('Hello');
+    </script>
+</body>
+</html>
