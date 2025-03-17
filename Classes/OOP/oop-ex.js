@@ -27,3 +27,26 @@ console.log("_____ End of Ex1 _____");
 /* 
 Write a JavaScript program to create a class called 'Rectangle' with properties for width and height. Include two methods to calculate rectangle area and perimeter. Create an instance of the 'Rectangle' class and calculate its area and perimeter.
 */
+
+class Rectangle{
+    constructor(width, height){
+        this.width = width;
+        this.height = height;
+    }
+
+    calculateArea(){
+        return this.width * this.height;
+    }
+
+    calculatePerimeter(){
+        return 2 * (this.width + this.height);
+    }
+}
+
+const rectangle1 = new Rectangle(5, 3);
+const area = rectangle1.calculateArea();
+const perimeter = rectangle1.calculatePerimeter();
+
+console.log(`Rectangle with width: ${rectangle1.width} and height: ${rectangle1.height} has an Area: ${area} and Perimeter: ${perimeter}`);
+
+console.log("_____ End of Ex2 _____");
