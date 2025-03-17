@@ -118,3 +118,45 @@ const account1 = new BankAccount(123456, 1000);
 account1.deposit(500);
 account1.withdraw(200);
 account1.withdraw(1500);
+
+console.log("_____ End of Ex4 _____");
+
+// Ex5 Shape, Circle, and Triangle Classes with Area Calculation
+/*
+    Write a JavaScript program that creates a class called 'Shape' with a method to calculate the area. Create two subclasses, 'Circle' and 'Triangle', that inherit from the 'Shape' class and override the area calculation method. Create an instance of the 'Circle' class and calculate its area. Similarly, do the same for the 'Triangle' class.
+*/
+class Shape{
+    calculateArea(){
+        throw new Error('Method calculateArea() must be implemented.');
+    }
+}
+class Circle extends Shape{
+    constructor(radius){
+        super();
+        this.radius = radius;
+    }
+    calculateArea(){
+        return Math.PI * this.radius * this.radius;
+    }
+}
+
+class Triangle extends Shape{
+    constructor(base, height){
+        super();
+        this.base = base;
+        this.height = height;
+    }
+
+    calculateArea(){
+        return 0.5 * this.base * this.height;
+    }
+
+}
+
+const circle = new Circle(5);
+const triangle = new Triangle(3, 4);
+
+console.log(`Circle area: ${circle.calculateArea()}`);
+console.log(`Triangle area: ${triangle.calculateArea()}`);
+
+console.log("_____ End of Ex5 _____");
