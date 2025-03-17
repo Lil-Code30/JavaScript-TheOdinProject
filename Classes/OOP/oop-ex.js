@@ -50,3 +50,40 @@ const perimeter = rectangle1.calculatePerimeter();
 console.log(`Rectangle with width: ${rectangle1.width} and height: ${rectangle1.height} has an Area: ${area} and Perimeter: ${perimeter}`);
 
 console.log("_____ End of Ex2 _____");
+
+// Ex3 Vehicle and Car Classes with Inheritance
+/*
+Write a JavaScript program that creates a class called 'Vehicle' with properties for make, model, and year. Include a method to display vehicle details. Create a subclass called 'Car' that inherits from the 'Vehicle' class and includes an additional property for the number of doors.Override the display method to include the number of doors. 
+*/ 
+
+class Vehicle{
+    constructor(make, model, year){
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    displayDetails(){
+        console.log(`Make: ${this.make}, Model: ${this.model}, Year: ${this.year}`);
+    }
+}
+
+class Car extends Vehicle{
+    constructor(make, model, year, numDoors){
+        super(make, model, year);
+        this.numDoors = numDoors;
+    }
+
+    displayDetails(){
+        console.log(`Make: ${this.make}, Model: ${this.model}, Year: ${this.year}, Number of Doors: ${this.numDoors}`);
+    }
+}
+// create vehicle object
+const myVehicle = new Vehicle('Toyota', 'Camry', 2015);
+myVehicle.displayDetails();
+
+// Create a new Car object
+const myCar = new Car('Toyota', 'Camry', 2015, 4);
+myCar.displayDetails();
+
+console.log("_____ End of Ex3 _____");
