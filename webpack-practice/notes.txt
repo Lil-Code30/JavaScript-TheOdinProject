@@ -1,0 +1,7 @@
+// npm scripts
+"scripts":{
+    "build": "webpack",
+    "dev": "webpack serve",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
+}
+We have three npm scripts here. In this case, running npm run build would be the same as running npx webpack (which you may have seen in the Webpack guides from the previous Webpack lesson), npm run dev would be the same as npx webpack serve, and npm run deploy would run git subtree push --prefix dist origin gh-pages
