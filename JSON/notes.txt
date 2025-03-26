@@ -1,0 +1,11 @@
+JSON syntax restrictions
+As mentioned earlier, any JSON is a valid JavaScript literal (object, array, number, etc.). The converse is not true, though—not all JavaScript object literals are valid JSON.
+
+JSON can only contain serializable data types. This means:
+For primitives, JSON can contain string literals, number literals, true, false, and null. Notably, it cannot contain undefined, NaN, or Infinity.
+For non-primitives, JSON can contain object literals and arrays, but not functions or any other object types, such as Date, Set, and Map. The objects and arrays inside JSON need to further contain valid JSON data types.
+Strings must be enclosed in double quotes, not single quotes.
+Numbers must be written in decimal notation.
+Each property of an object must be in the form of "key": value. Property names must be string literals enclosed in double quotes. Special JavaScript syntax, such as methods, is not allowed because methods are functions, and functions are not valid JSON data types.
+Objects and arrays cannot contain trailing commas.
+Comments are not allowed in JSON.
