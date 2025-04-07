@@ -1,10 +1,13 @@
 // creating a promise object
 
 const userLeft = false;
-const userWatchingCatMeme = false;
+const userWatchingCatMeme = true;
 
 function checkUserWatching() {
   return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("2 seconds passed");
+    }, 2000);
     if (userLeft) {
       reject({
         name: "User Left :(",
@@ -31,3 +34,5 @@ checkUserWatching()
   .catch((error) => {
     console.log(error.name + " " + error.message);
   });
+
+console.log("Bye");
