@@ -3,7 +3,22 @@ const imageContainer = document.querySelector(".container");
 const erromessage = document.querySelector("#error-message");
 const APIKey = "N2arZILgcPWuxNwCbcxdUDmgTjho6Wif"; // API key 😅 JUST FOR TEST DON'T USE IT PLEASE
 
-// ex: 'https://api.giphy.com/v1/gifs/translate?api_key=N2arZILgcPWuxNwCbcxdUDmgTjho6Wif&s=cats'
+let clickCount = JSON.parse(localStorage.getItem("clickCount")) || 0;
+clickCount = Number(clickCount);
+const countcontainer = document.querySelector("#count");
+
+countcontainer.innerHTML = `${JSON.parse(
+  localStorage.getItem("clickCount")
+)}/100`;
+
+// set time interval to reset the click count every hour
+let interval = setInterval(() => {
+  clickCount = 0;
+  localStorage.setItem("clickCount", JSON.stringify(clickCount));
+  countcontainer.innerHTML = `${JSON.parse(
+    localStorage.getItem("clickCount")
+  )}/100`;
+}, 3600000);
 
 btn.addEventListener("click", () => {
   let input = document.querySelector("input");
@@ -24,6 +39,15 @@ btn.addEventListener("click", () => {
     })
       .then((res) => {
         console.log(res);
+
+        // count the number of requests
+        clickCount++;
+        localStorage.setItem("clickCount", JSON.stringify(clickCount));
+        countcontainer.innerHTML = `${JSON.parse(
+          localStorage.getItem("clickCount")
+        )}/100`;
+
+        // check if no error occured
         if (res.ok === false) {
           // API rate limit exceeded
           throw new Error(`Error: ${res.status}`);
@@ -43,7 +67,6 @@ btn.addEventListener("click", () => {
       .catch((error) => {
         erromessage.classList.add("display");
         erromessage.textContent = error.message;
-        console.log(error);
       });
   } else {
     erromessage.classList.add("display");
