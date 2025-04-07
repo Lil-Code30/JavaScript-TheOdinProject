@@ -23,6 +23,11 @@ btn.addEventListener("click", () => {
       mode: "cors",
     })
       .then((res) => {
+        console.log(res);
+        if (res.ok === false) {
+          // API rate limit exceeded
+          throw new Error(`Error: ${res.status}`);
+        }
         return res.json();
       })
       .then((res) => {
@@ -33,12 +38,11 @@ btn.addEventListener("click", () => {
 
         // console.log(res);
         // display the image url in the console for testing
-        console.log(res.data.images.original.url);
+        console.log(`Image URL: ${res.data.images.original.url}`);
       })
       .catch((error) => {
         erromessage.classList.add("display");
-        erromessage.textContent =
-          "Please enter a word followed by some hastags like (optional) #cat or #dog etc.";
+        erromessage.textContent = error.message;
         console.log(error);
       });
   } else {
