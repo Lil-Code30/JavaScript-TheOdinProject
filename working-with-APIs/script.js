@@ -1,7 +1,8 @@
 const btn = document.querySelector("#generate-btn");
 const imageContainer = document.querySelector(".container");
 const erromessage = document.querySelector("#error-message");
-const APIKey = "N2arZILgcPWuxNwCbcxdUDmgTjho6Wif"; // API key 😅 JUST FOR TEST DON'T USE IT PLEASE
+const APIKey = "KLeZw5WAr0Rb6dAMd9Yw81DqOHs4i08L"; // API key  desactivated need to get a new one
+// from https://developers.giphy.com
 
 let clickCount = JSON.parse(localStorage.getItem("clickCount")) || 0;
 clickCount = Number(clickCount);
@@ -33,44 +34,41 @@ btn.addEventListener("click", () => {
     erromessage.classList.remove("display");
     erromessage.textContent = "";
 
-    //fetching the data
-    fetch(url, {
-      mode: "cors",
-    })
-      .then((res) => {
-        console.log(res);
-
-        // count the number of requests
-        clickCount++;
-        localStorage.setItem("clickCount", JSON.stringify(clickCount));
-        countcontainer.innerHTML = `${JSON.parse(
-          localStorage.getItem("clickCount")
-        )}/100`;
-
-        // check if no error occured
-        if (res.ok === false) {
-          // API rate limit exceeded
-          throw new Error(`Error: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((res) => {
-        const img = document.createElement("img");
-        img.src = res.data.images.original.url;
-        imageContainer.innerHTML = "";
-        imageContainer.appendChild(img);
-
-        // console.log(res);
-        // display the image url in the console for testing
-        console.log(`Image URL: ${res.data.images.original.url}`);
-      })
-      .catch((error) => {
-        erromessage.classList.add("display");
-        erromessage.textContent = error.message;
-      });
+    // call the function to fetch the data
+    getRandomGif(url);
   } else {
     erromessage.classList.add("display");
     erromessage.textContent =
       "Please enter a word followed by some hastags like (optional) #cat or #dog etc.";
   }
 });
+
+// function using async await to fetch the data
+async function getRandomGif(url) {
+  try {
+    const res = await fetch(url, {
+      mode: "cors",
+    });
+
+    // count the number of requests
+    clickCount++;
+    localStorage.setItem("clickCount", JSON.stringify(clickCount));
+    countcontainer.innerHTML = `${JSON.parse(
+      localStorage.getItem("clickCount")
+    )}/100`;
+
+    const gifData = await res.json();
+    const img = document.createElement("img");
+
+    img.src = gifData.data.images.original.url;
+
+    // display the image url in the console for testing
+    console.log(`Image URL: ${gifData.data.images.original.url}`);
+
+    imageContainer.innerHTML = "";
+    imageContainer.appendChild(img);
+  } catch (error) {
+    erromessage.classList.add("display");
+    erromessage.textContent = error.message;
+  }
+}
